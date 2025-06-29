@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entrepreneurship Club at Parul University, an initiative by PIERC to promote entrepreneurial skills through events, workshops, and networking.">
+    <meta name="keywords" content="Parul University, Entrepreneurship Club, PIERC, student startups, entrepreneurship workshops, Vadodara">
+    <meta name="author" content="Entrepreneurship Club">
+    <title>Entrepreneurship Club | Parul University</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        /* Navbar */
+        .navbar {
+            transition: background 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(30, 58, 138, 0.95);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(30, 58, 138, 0.6), rgba(45, 212, 191, 0.4));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .hero-btn {
+            background: #F87171;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .hero-btn:hover {
+            transform: scale(1.1);
+            background: #EF4444;
+        }
+        /* Section Animations */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Event Card Flip Effect */
+        .event-card {
+            perspective: 1000px;
+            height: 350px;
+        }
+        .event-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .event-card:hover .event-card-inner {
+            transform: rotateY(180deg);
+        }
+        .event-card-front, .event-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .event-card-front {
+            background: white;
+        }
+        .event-card-back {
+            background: #2DD4BF;
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+        }
+        /* Social Icons */
+        .social-icons a {
+            color: #1E3A8A;
+            margin: 0 12px;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #F87171;
+        }
+        /* Button Animations */
+        .btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        
+
+
+        
+   
+    @media (max-width: 640px) {
+        .hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+        }
+
+        .hero-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        .navbar .space-x-8 {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .event-card {
+            height: 300px;
+        }
+
+        .grid-cols-1.md\:grid-cols-3 {
+            grid-template-columns: 1fr !important;
+        }
+
+        .grid-cols-1.md\:grid-cols-2 {
+            grid-template-columns: 1fr !important;
+        }
+
+        .flex.md\:flex-row {
+            flex-direction: column !important;
+        }
+
+        .md\:w-1\/2 {
+            width: 100% !important;
+        }
+
+        .md\:pl-10 {
+            padding-left: 0 !important;
+        }
+
+        .text-4xl {
+            font-size: 1.75rem;
+        }
+
+        .text-7xl {
+            font-size: 2.5rem;
+        }
+
+        .px-8 {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        .py-4 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .py-20 {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        
+        #menu {
+            width: 100%;
+            background-color: #1E3A8A;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        #menu a {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: block;
+            color: white;
+        }
+
+        #menu a:last-child {
+            border-bottom: none;
+        }
+}
+
+    
+
+    
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .hero-content h1 {
+            font-size: 3rem;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+        }
+
+        .event-card {
+            height: 320px;
+        }
+
+        .text-4xl {
+            font-size: 2.25rem;
+        }
+
+       
+        #menu {
+            width: 100%;
+            background-color: #1E3A8A;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+
+        #menu a {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: block;
+            color: white;
+        }
+
+        #menu a:last-child {
+            border-bottom: none;
+        }
+    }
+
+
+
+    
+    @media (min-width: 1025px) {
+        .hero-content h1 {
+            font-size: 4.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+        }
+
+        .event-card {
+            height: 350px;
+        }
+    }
+
+    </style>
+</head>
+<body>
+   
+ <!-- Navbar -->
+<nav class="navbar bg-blue-900 text-white p-4 sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center">
+    <a href="#" class="text-3xl font-bold">E-Club</a>
+
+    
+    <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation Menu -->
+    <div id="menu" class="hidden flex-col md:flex md:flex-row md:space-x-8 text-lg mt-4 md:mt-0">
+      <a href="#home" class="hover:text-teal-300 transition-colors py-2 md:py-0">Home</a>
+      <a href="#about" class="hover:text-teal-300 transition-colors py-2 md:py-0">About</a>
+      <a href="#events" class="hover:text-teal-300 transition-colors py-2 md:py-0">Events</a>
+      <a href="#membership" class="hover:text-teal-300 transition-colors py-2 md:py-0">Membership</a>
+      <a href="#resources" class="hover:text-teal-300 transition-colors py-2 md:py-0">Resources</a>
+      <a href="#contact" class="hover:text-teal-300 transition-colors py-2 md:py-0">Contact</a>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white">Launch Your Startup Dreams</h1>
+            <p class="text-xl md:text-2xl mb-8 text-teal-100">Join the Entrepreneurship Club, powered by PIERC, to innovate, network, and grow!</p>
+            <a href="#membership" class="hero-btn text-white px-8 py-4 rounded-full text-lg font-semibold">Get Started</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Who We Are</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Team collaboration" class="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="md:w-1/2 md:pl-10">
+                    <p class="text-lg text-gray-700 mb-6">The Entrepreneurship Club at Parul University, an initiative by PIERC, is your launchpad for entrepreneurial success. We empower students to innovate, collaborate, and turn ideas into reality through workshops, events, and mentorship.</p>
+                    <p class="text-lg text-gray-700">Connected to PIERC’s startup ecosystem, we provide access to resources, industry leaders, and opportunities like the Vadodara Startup Demo Day. Ready to shape the future? Join us!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="section py-20 bg-gradient-to-br from-blue-50 to-teal-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Upcoming Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="event-card">
+                    <div class="event-card-inner">
+                        <div class="event-card-front bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Workshop" class="h-48 w-full object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2 text-blue-900">Pitching Workshop</h3>
+                                <p class="text-gray-600">Master the art of pitching with experts. Date: May 10, 2025.</p>
+                            </div>
+                        </div>
+                        <div class="event-card-back">
+                            <p class="text-lg">Join us to learn pitching techniques and get feedback! <a href="#" class="underline hover:text-coral-500">Register Now</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-card-inner">
+                        <div class="event-card-front bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Networking" class="h-48 w-full object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2 text-blue-900">Startup Networking Night</h3>
+                                <p class="text-gray-600">Meet founders and investors. Date: May 20, 2025.</p>
+                            </div>
+                        </div>
+                        <div class="event-card-back">
+                            <p class="text-lg">Network with industry leaders and grow your connections! <a href="#" class="underline hover:text-coral-500">Register Now</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-card-inner">
+                        <div class="event-card-front bg-white shadow-lg rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Demo Day" class="h-48 w-full object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-semibold mb-2 text-blue-900">Vadodara Startup Demo Day</h3>
+                                <p class="text-gray-600">Showcase your startup. Date: June 5, 2025.</p>
+                            </div>
+                        </div>
+                        <div class="event-card-back">
+                            <p class="text-lg">Pitch your startup to investors and win support! <a href="#" class="underline hover:text-coral-500">Register Now</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="btn bg-teal-500 text-white px-8 py-4 rounded-full text-lg font-semibold">Explore All Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="section py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Join Our Community</h2>
+            <p class="text-lg text-center mb-10 text-gray-700">Unlock exclusive workshops, mentorship, and networking by becoming a member. Open to all Parul University students!</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-r from-blue-100 to-teal-100 rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-900">How to Join</h3>
+                    <ul class="list-disc pl-6 text-gray-700">
+                        <li>Complete the membership form below.</li>
+                        <li>Join our biweekly meetings (Wednesdays, 5:30 PM).</li>
+                        <li>Apply for core team leadership roles.</li>
+                    </ul>
+                    <a href="#contact" class="block mt-6 text-teal-600 hover:underline font-semibold">Membership Form</a>
+                </div>
+                <div class="bg-gradient-to-r from-blue-100 to-teal-100 rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-900">Why Join?</h3>
+                    <ul class="list-disc pl-6 text-gray-700">
+                        <li>Access PIERC’s startup incubator resources.</li>
+                        <li>Network with industry leaders and alumni.</li>
+                        <li>Participate in skill-building workshops.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section py-20 bg-gradient-to-br from-teal-50 to-blue-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Resources for Innovators</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-900">Startup Guides</h3>
+                    <p class="text-gray-600 mb-4">Leverage PIERC’s tools for ideation, pitching, and funding.</p>
+                    <a href="https://paruluniversity.ac.in" class="text-teal-600 hover:underline font-semibold">Learn More</a>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-900">Workshops</h3>
+                    <p class="text-gray-600 mb-4">Master UI/UX, business planning, and more.</p>
+                    <a href="#events" class="text-teal-600 hover:underline font-semibold">View Workshops</a>
+                </div>
+                <div class="bg-white rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-900">Mentorship</h3>
+                    <p class="text-gray-600 mb-4">Connect with seasoned entrepreneurs.</p>
+                    <a href="#contact" class="text-teal-600 hover:underline font-semibold">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-10 text-blue-900">Let’s Connect</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="bg-gradient-to-r from-blue-100 to-teal-100 p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-semibold">Name</label>
+                            <input type="text" id="name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-semibold">Email</label>
+                            <input type="email" id="email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-semibold">Message</label>
+                            <textarea id="message" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-500" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn bg-coral-500 text-white px-8 py-3 rounded-full font-semibold">Send Message</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 md:pl-10 flex flex-col justify-center">
+                    <p class="text-lg text-gray-700 mb-6">Got ideas or questions? Reach out to collaborate or join the club!</p>
+                    <p class="text-lg text-gray-700 mb-4"><strong>Email:</strong> eclub@paruluniversity.ac.in</p>
+                    <p class="text-lg text-gray-700 mb-6"><strong>Address:</strong> Parul University, Vadodara, Gujarat, India</p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Entrepreneurship Club, Parul University. Powered by <a href="https://paruluniversity.ac.in" class="underline hover:text-teal-300">PIERC</a>.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Smooth Scrolling and Animations -->
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll-Triggered Section Animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+    });
+
+
+    </script>
+</body>
+</html>
